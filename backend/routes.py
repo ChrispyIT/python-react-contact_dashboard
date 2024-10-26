@@ -14,7 +14,7 @@ def get_friends():
 def create_friend():
     try:
         data = request.json
-        
+        #Validation
         required_fileds = ["name", "role", "description", "gender"]
         for field in required_fileds:
             if field not in data:
@@ -49,10 +49,34 @@ def create_friend():
 def delete_friend(id):
     try:
      friend = Friend.query.get(id)
-     db.session.delete(friend)
-     db.session.commit()
+     if not friend:
+        return jsonify({"message": "Friend does not exist"})
+     else:
+        db.session.delete(friend)
+        db.session.commit()
      return jsonify({"msg": "Friend deleted!"})
  
     except Exception as e: 
         db.session.rollback
-        return jsonify({"msg": " Did not found such Friend!"}, {"error": str(e)}),400 
+        return jsonify({"msg": " Did not found such Friend!"}, {"error": str(e)}),500 
+
+#UPDATE friend
+@app.route("/api/update_friend/<int:id>", methods=["PUT"])
+def update_friend(id):
+    try:
+     friend = Friend.query.get(id)
+     if not friend:
+        return jsonify({"message": "Friend does not exist"})
+     else:
+        data = request.json
+        
+        friend.name = data.get("name", friend.name)
+        friend.role = data.get("role", friend.role)
+        friend.description = data.get("description", friend.description)
+        
+        db.session.commit()
+     return jsonify(friend.to_json()), 200
+ 
+    except Exception as e: 
+        db.session.rollback
+        return jsonify({"msg": " Did not found such Friend!"}, {"error": str(e)}),500 

@@ -1,3 +1,4 @@
+#TODO: UPDATE THIS FILE FOR DEPLOYEMENT
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
