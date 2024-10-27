@@ -15,12 +15,13 @@ def create_friend():
     try:
         data = request.json
         #Validation
-        required_fileds = ["name", "role", "description", "gender"]
+        required_fileds = ["name", "email", "role", "description", "gender"]
         for field in required_fileds:
             if field not in data:
                 return jsonify({"error": f'Missing required field: {field}'}), 400
         
         name = data.get("name")
+        email = data.get("email")
         role = data.get("role")
         description = data.get("description")
         gender = data.get("gender")
@@ -33,7 +34,7 @@ def create_friend():
         else: 
             img_url= None
             
-        new_friend = Friend(name=name, role=role, description=description, gender=gender, img_url=img_url)
+        new_friend = Friend(name=name, email=email, role=role, description=description, gender=gender, img_url=img_url)
             
         db.session.add(new_friend)
         db.session.commit()
@@ -71,6 +72,7 @@ def update_friend(id):
         data = request.json
         
         friend.name = data.get("name", friend.name)
+        friend.email = data.get("email", friend.email)
         friend.role = data.get("role", friend.role)
         friend.description = data.get("description", friend.description)
         
