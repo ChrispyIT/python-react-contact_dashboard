@@ -2,6 +2,7 @@ import React from 'react'
 import { Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, IconButton, Text, useToast } from "@chakra-ui/react";
 import { BiTrash } from "react-icons/bi";
 import { useColorModeValue } from '@chakra-ui/react';
+import { EditModal } from './EditModal';
 
 export const ContactCard = ({user}) => {
     return (
@@ -21,8 +22,10 @@ export const ContactCard = ({user}) => {
 					</Flex>
 
 					<Flex>
+						<EditModal></EditModal>
 						<IconButton
-							variant='ghost'							
+							variant='ghost'	
+							colorScheme='blue'						
 							size={"sm"}
 							aria-label='See menu'
 							icon={<BiTrash size={20} />}
