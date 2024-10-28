@@ -45,12 +45,6 @@ const USERS = [
 		role: "SWE 3",
 		description: "I build things and write about it to help you become a better engineer.",
 	},
-	{
-		id: 7,
-		name: "Emma Bostian",
-		email:"emabostian@chrispyit.com",
-		role: "Senior SWE, Spotify",
-		description: "I'm a software engineer with a passion for building scalable web applications.",
-	},
+	
 ];
 export default USERS
