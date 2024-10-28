@@ -1,12 +1,14 @@
 import React from "react";
 import { Flex, Grid, Spinner, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
+import { ContactCard } from "./ContactCard.jsx";
+import USERS from "../Mocks/ContactListMock.js"
 
-const ContactGrid = ({users, setUsers}) =>{
+const ContactGrid = () =>{
 
     return(
-        <>
-        <Grid
+        <>        
+        <Grid 
         
             templateColumns={{
                 base: "1fr",
@@ -15,8 +17,13 @@ const ContactGrid = ({users, setUsers}) =>{
             }}
             gap={4}
         >
+            
+            {USERS.map((user) => (
+                
+                <ContactCard key={user.id} user = {user} />
+            ))}
         </Grid>
         </>
     )
 }
- export default ContactGrid
+export default ContactGrid
