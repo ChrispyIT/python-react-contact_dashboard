@@ -4,7 +4,7 @@ import { BiTrash } from "react-icons/bi";
 import { useColorModeValue } from '@chakra-ui/react';
 import { EditModal } from './EditModal';
 
-export const ContactCard = ({user}) => {
+export const ContactCard = ({contact, setContact}) => {
     return (
 		
 		<Card> 
@@ -29,9 +29,9 @@ export const ContactCard = ({user}) => {
 						<Avatar src={"https://avatar.iran.liara.run/public/"} />
 
 						<Box >
-							<Heading size='sm'>{user.name}</Heading>
-							<Text>{user.email}</Text>
-							<Text>{user.role}</Text>							
+							<Heading size='sm'>{contact.name}</Heading>
+							<Text>{contact.email}</Text>
+							<Text>{contact.role}</Text>							
 						</Box>
 					</Flex>
 
@@ -43,7 +43,7 @@ export const ContactCard = ({user}) => {
 			</CardHeader>
 
 			<CardBody >
-				<Text>{user.description}</Text>
+				<Text>{contact.description}</Text>
 			</CardBody>
 		</Card>
 	);
