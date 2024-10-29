@@ -7,7 +7,21 @@ import { EditModal } from './EditModal';
 export const ContactCard = ({user}) => {
     return (
 		
-		<Card> <img src={useColorModeValue('chrispyIT_black.png', 'chrispyIT_color.png')} width={70}/>
+		<Card> 
+			<Flex>
+				<img src={useColorModeValue('chrispyIT_black.png', 'chrispyIT_color.png')} width={70}/>
+				<Flex pl={"65%"}>
+				<EditModal/>
+						<IconButton
+							variant='ghost'	
+							colorScheme='blue'						
+							size={"sm"}
+							aria-label='See menu'
+							icon={<BiTrash size={20} />}
+							
+						/>
+						</Flex>
+				</Flex>
 			
 			<CardHeader>			
 							<Flex gap={4} >
@@ -22,15 +36,8 @@ export const ContactCard = ({user}) => {
 					</Flex>
 
 					<Flex>
-						<EditModal></EditModal>
-						<IconButton
-							variant='ghost'	
-							colorScheme='blue'						
-							size={"sm"}
-							aria-label='See menu'
-							icon={<BiTrash size={20} />}
-							
-						/>
+						
+						
 					</Flex>
 				</Flex>
 			</CardHeader>

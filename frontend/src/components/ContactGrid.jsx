@@ -1,10 +1,29 @@
 import React from "react";
 import { Flex, Grid, Spinner, Text } from "@chakra-ui/react";
-import { useColorModeValue } from "@chakra-ui/react";
 import { ContactCard } from "./ContactCard.jsx";
-import USERS from "../Mocks/ContactListMock.js"
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../App"
 
-const ContactGrid = () =>{
+const ContactGrid = ({contacts, setContacts}) =>{
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+		const getContacts = async () => {
+			try {
+				const response = await fetch(BASE_URL + "/friends");
+				const data = await response.json();
+
+				if (!response.ok) {
+					throw new Error(data.error);
+				}
+				setContacts(data);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		getContacts();
+	},[setContacts] );
 
     return(
         <>        
@@ -18,9 +37,9 @@ const ContactGrid = () =>{
             gap={4}
         >
             
-            {USERS.map((user) => (
+            {contacts?.map((contact) => (
                 
-                <ContactCard key={user.id} user = {user} />
+                <ContactCard key={contact.id} user = {contact} />
             ))}
         </Grid>
         </>
