@@ -39,7 +39,7 @@ const ContactGrid = ({contacts, setContacts}) =>{
             
             {contacts?.map((contact) => (
                 
-                <ContactCard key={contact.id} user = {contact} />
+                <ContactCard key={contact.id} contact = {contact} />
             ))}
         </Grid>
         </>
