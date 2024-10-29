@@ -2,7 +2,7 @@ import { Box, Button, Container, Flex, Text, useColorMode, useColorModeValue } f
 import { IoMoon } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
 import { ModalCreateUser } from "./ModalCreateUser"
-
+import { InfoModal } from "./InfoModal";
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -22,17 +22,16 @@ const Navbar = () => {
 						<img src={useColorModeValue('react-seeklogo.svg', 'react.png')} width={50}/>
 						<Text fontSize={"40px"}>+</Text>
 						<img src='/python.png' alt='Python logo' width={50} height={40} />
-						<Text fontSize={"40px"}>=
-                        <Button>Project info</Button>
-                        </Text>
+												
 					</Flex>
+					
 					{/* Right side */}
 					<Flex gap={3} alignItems={"center"}>
+					    <ModalCreateUser/>
 						<Button onClick={toggleColorMode}>
 							{colorMode === "light" ? <IoMoon /> : <LuSun size={20} />}
 						</Button>
-                        <ModalCreateUser/>
-						
+						<InfoModal/>                        						
 					</Flex>
 				</Flex>
 			</Box>
