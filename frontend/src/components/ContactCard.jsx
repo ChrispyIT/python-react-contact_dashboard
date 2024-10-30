@@ -4,14 +4,14 @@ import { useColorModeValue } from "@chakra-ui/react"
 import { EditModal } from "./EditModal"
 import { DeleteModal} from "./DeleteModal"
 
-export const ContactCard = ({contact, getContacts, setIsLoading, reloadGrid}) => {
+export const ContactCard = ({contact, setContacts, setIsLoading, reloadGrid}) => {
     return (
 		
 		<Card> 
 			<Flex>
 				<img src={useColorModeValue('chrispyIT_black.png', 'chrispyIT_color.png')} width={70}/>
 				<Flex pl={"65%"}>
-				<EditModal contact={contact} getContacts={getContacts} />
+				<EditModal contact={contact} setContacts={setContacts} />
 				<DeleteModal contact={contact} setIsLoading={setIsLoading} reloadGrid={reloadGrid}/>			
 						</Flex>
 				</Flex>
