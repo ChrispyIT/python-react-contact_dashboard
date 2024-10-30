@@ -12,7 +12,7 @@ export const ContactCard = ({contact, setContacts, setIsLoading, reloadGrid}) =>
 				<img src={useColorModeValue('chrispyIT_black.png', 'chrispyIT_color.png')} width={70}/>
 				<Flex pl={"65%"}>
 				<EditModal contact={contact} setContacts={setContacts} />
-				<DeleteModal contact={contact} setIsLoading={setIsLoading} reloadGrid={reloadGrid}/>			
+				<DeleteModal contact={contact} reloadGrid={reloadGrid}/>			
 						</Flex>
 				</Flex>
 			
