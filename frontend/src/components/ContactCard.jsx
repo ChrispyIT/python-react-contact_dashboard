@@ -4,14 +4,14 @@ import { BiTrash } from "react-icons/bi";
 import { useColorModeValue } from '@chakra-ui/react';
 import { EditModal } from './EditModal';
 
-export const ContactCard = ({contact, setContact}) => {
+export const ContactCard = ({contact, setContacts}) => {
     return (
 		
 		<Card> 
 			<Flex>
 				<img src={useColorModeValue('chrispyIT_black.png', 'chrispyIT_color.png')} width={70}/>
 				<Flex pl={"65%"}>
-				<EditModal/>
+				<EditModal contact={contact} setContacts={setContacts}/>
 						<IconButton
 							variant='ghost'	
 							colorScheme='blue'						
@@ -26,7 +26,7 @@ export const ContactCard = ({contact, setContact}) => {
 			<CardHeader>			
 							<Flex gap={4} >
 					<Flex flex={"1"} gap={"4"} alignItems={"center"} >
-						<Avatar src={"https://avatar.iran.liara.run/public/"} />
+						<Avatar src= {contact.imgUrl} />
 
 						<Box >
 							<Heading size='sm'>{contact.name}</Heading>
