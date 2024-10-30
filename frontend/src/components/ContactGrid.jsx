@@ -1,33 +1,40 @@
-import React from "react";
-import { Flex, Grid, Spinner, Text } from "@chakra-ui/react";
+import {React} from "react";
+import { Flex, Grid, Button} from "@chakra-ui/react";
 import { ContactCard } from "./ContactCard.jsx";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../App"
+import { useForceUpdate } from "framer-motion";
 
 const ContactGrid = ({contacts, setContacts}) =>{
     const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-		const getContacts = async () => {
-			try {
-				const response = await fetch(BASE_URL + "/friends");
-				const data = await response.json();
+    const getContacts = async () => {
+        try {
+            const response = await fetch(BASE_URL + "/friends");
+            const data = await response.json();
 
-				if (!response.ok) {
-					throw new Error(data.error);
-				}
-				setContacts(data);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setIsLoading(false);
-			}
-		};
+            if (!response.ok) {
+                throw new Error(data.error);
+            }
+            setContacts(data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    useEffect(() => {
 		getContacts();
 	},[setContacts] );
 
+    function reloadGrid() {
+        getContacts()
+      }
+
     return(
-        <>        
+        <>
+        
         <Grid 
+       
         
             templateColumns={{
                 base: "1fr",
@@ -39,7 +46,7 @@ const ContactGrid = ({contacts, setContacts}) =>{
             
             {contacts?.map((contact) => (
                 
-                <ContactCard key={contact.id} contact = {contact} setContacts={setContacts}/>
+                <ContactCard key={contact.id} contact = {contact} setContacts={setContacts} reloadGrid={reloadGrid}/>
             ))}
         </Grid>
         </>

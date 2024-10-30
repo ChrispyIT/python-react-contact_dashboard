@@ -1,25 +1,18 @@
-import React from 'react'
+import React from "react"
 import { Avatar, Box, Card, CardBody, CardHeader, Flex, Heading, IconButton, Text, useToast } from "@chakra-ui/react";
-import { BiTrash } from "react-icons/bi";
-import { useColorModeValue } from '@chakra-ui/react';
-import { EditModal } from './EditModal';
+import { useColorModeValue } from "@chakra-ui/react"
+import { EditModal } from "./EditModal"
+import { DeleteModal} from "./DeleteModal"
 
-export const ContactCard = ({contact, setContacts}) => {
+export const ContactCard = ({contact, getContacts, setIsLoading, reloadGrid}) => {
     return (
 		
 		<Card> 
 			<Flex>
 				<img src={useColorModeValue('chrispyIT_black.png', 'chrispyIT_color.png')} width={70}/>
 				<Flex pl={"65%"}>
-				<EditModal contact={contact} setContacts={setContacts}/>
-						<IconButton
-							variant='ghost'	
-							colorScheme='blue'						
-							size={"sm"}
-							aria-label='See menu'
-							icon={<BiTrash size={20} />}
-							
-						/>
+				<EditModal contact={contact} getContacts={getContacts} />
+				<DeleteModal contact={contact} setIsLoading={setIsLoading} reloadGrid={reloadGrid}/>			
 						</Flex>
 				</Flex>
 			
